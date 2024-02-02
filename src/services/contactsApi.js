@@ -1,4 +1,4 @@
-const { default: axios } = require('axios');
+import axios from "axios";
 
 const BASE_URL = 'https://65bbc27e52189914b5bd0541.mockapi.io/api';
 

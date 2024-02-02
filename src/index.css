@@ -16,3 +16,10 @@ code {
 ul {
   list-style: none;
 }
+
+.loaderStyle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  
+}

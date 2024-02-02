@@ -5,11 +5,11 @@ import Filter from './Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getContactsThunk } from 'store/contacts/contactThunk';
+import Loader from './Loader/Loader';
 
 export const App = () => {
   const { contacts, error, isLoading } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     dispatch(getContactsThunk());
@@ -19,11 +19,12 @@ export const App = () => {
     <div className={css.wrapper}>
       <h1 className={css.title}>Phonebook</h1>
       <Phonebook />
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Loader />}
       {contacts.length > 0 && (
         <>
           <h2 className={css.title}>Contacts</h2>
           <Filter />
+
           <Contacts />
         </>
       )}
