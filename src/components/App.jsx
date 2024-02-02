@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getContactsThunk } from 'store/contacts/contactThunk';
 import Loader from './Loader/Loader';
+import { contactsSelector } from 'store/contacts/contactsSelectors';
 
 export const App = () => {
-  const { contacts, error, isLoading } = useSelector(state => state.contacts);
+  const { contacts, error, isLoading } = useSelector(contactsSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
