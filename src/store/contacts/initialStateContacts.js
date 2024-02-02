@@ -1,1 +1,5 @@
-export const initialStateContact = { contacts: [] };
+export const initialStateContact = {
+  contacts: [],
+  isLoading: false,
+  error: null,
+};

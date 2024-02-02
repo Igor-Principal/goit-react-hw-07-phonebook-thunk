@@ -1,21 +1,16 @@
 import { useState } from 'react';
 import css from './phonebook.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'store/contacts/contactSlice';
-import { nanoid } from 'nanoid';
+
+import { createContactsThunk } from 'store/contacts/contactThunk';
 
 const Phonebook = () => {
   const dispatch = useDispatch();
 
-const { contacts } = useSelector(state => state.contacts);
+  const { contacts } = useSelector(state => state.contacts);
 
   const [info, setInfo] = useState({ name: '', number: '' });
   const { name, number } = info;
-
-  
-   const createContact = data => {
-     dispatch(addContact({ ...data, id: nanoid() }));
-   };
 
   const handleChange = ({ target }) => {
     setInfo({
@@ -32,10 +27,7 @@ const { contacts } = useSelector(state => state.contacts);
     if (includeName) {
       alert(`${name} is already in contacts`);
     } else {
-      createContact({
-        name: name.trim(),
-        number: number,
-      });
+      dispatch(createContactsThunk({ name: name.trim(), number: number }));
     }
     setInfo({
       name: '',
@@ -43,7 +35,6 @@ const { contacts } = useSelector(state => state.contacts);
     });
   };
 
-  
   return (
     <form className={css.form} onSubmit={getInfo}>
       <label className={css.titleSmall} htmlFor="name">

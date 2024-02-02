@@ -1,6 +1,6 @@
 import css from './contacts.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'store/contacts/contactSlice';
+import { deleteContactsThunk } from 'store/contacts/contactThunk';
 
 const Contacts = () => {
   const { contacts } = useSelector(state => state.contacts);
@@ -9,7 +9,7 @@ const Contacts = () => {
   const dispatch = useDispatch();
 
   const handleClick = e => {
-    dispatch(deleteContact(e.target.id));
+    dispatch(deleteContactsThunk(e.target.id));
   };
 
   const filtered = contacts.filter(contact =>

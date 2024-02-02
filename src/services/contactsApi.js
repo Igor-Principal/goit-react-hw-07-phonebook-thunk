@@ -6,7 +6,7 @@ export async function getContacts() {
   return await axios.get(`${BASE_URL}/contacts`);
 }
 
-export async function createContact(data) {
+export async function addContact(data) {
   return await axios.post(`${BASE_URL}/contacts`, data);
 }
 
