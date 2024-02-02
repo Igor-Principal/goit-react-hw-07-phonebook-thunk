@@ -7,17 +7,19 @@ import { useEffect } from 'react';
 import { getContactsThunk } from 'store/contacts/contactThunk';
 
 export const App = () => {
-  const { contacts } = useSelector(state => state.contacts);
+  const { contacts, error, isLoading } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
-  
+
   return (
     <div className={css.wrapper}>
       <h1 className={css.title}>Phonebook</h1>
       <Phonebook />
+      {isLoading && <div>Loading...</div>}
       {contacts.length > 0 && (
         <>
           <h2 className={css.title}>Contacts</h2>
@@ -25,6 +27,7 @@ export const App = () => {
           <Contacts />
         </>
       )}
+      {error && <div>{error}</div>}
     </div>
   );
 };
